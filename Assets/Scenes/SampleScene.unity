@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovementSpeed: 10
-  rollSpeed: 20
+  rollSpeed: 25
   up: 119
   down: 115
   left: 97

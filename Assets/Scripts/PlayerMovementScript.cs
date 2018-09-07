@@ -40,12 +40,12 @@ public class PlayerMovementScript : MonoBehaviour {
                 rollingStop = false;
             }
         }
-        if (Input.GetKey(up))
+        if (Input.GetKey(up) && !rolling)
         {
             Move(new Vector2(rb.velocity.x, playerMovementSpeed));
             direction = new Vector2(direction.x, 1);
         }
-        else if (Input.GetKey(down))
+        else if (Input.GetKey(down) && !rolling)
         {
             Move(new Vector2(rb.velocity.x, -playerMovementSpeed));
             direction = new Vector2(direction.x, -1);
@@ -55,12 +55,12 @@ public class PlayerMovementScript : MonoBehaviour {
             Move(new Vector2(rb.velocity.x, 0));
             direction = new Vector2(direction.x, 0);
         }
-        if (Input.GetKey(right))
+        if (Input.GetKey(right) && !rolling)
         {
             Move(new Vector2(playerMovementSpeed, rb.velocity.y));
             direction = new Vector2(1, direction.y);
         }
-        else if (Input.GetKey(left))
+        else if (Input.GetKey(left) && !rolling)
         {
             Move(new Vector2(-playerMovementSpeed, rb.velocity.y));
             direction = new Vector2(-1, direction.y);
@@ -73,11 +73,14 @@ public class PlayerMovementScript : MonoBehaviour {
         }
         if(Input.GetKey(KeyCode.Mouse1) && !rolling)
         {
-            Debug.Log("Roll");
-            rolling = true;
-            Move(direction * rollSpeed);
-            rollingTime = 0.4f;
-            rollingStop = true;
+            if (rb.velocity.x != 0 || rb.velocity.y != 0)
+            {
+                Debug.Log("Roll");
+                rolling = true;
+                Move(direction * rollSpeed);
+                rollingTime = .3f;
+                rollingStop = true;
+            }
         }
     }
 
