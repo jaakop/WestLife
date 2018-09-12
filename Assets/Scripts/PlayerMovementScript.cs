@@ -28,8 +28,6 @@ public class PlayerMovementScript : MonoBehaviour {
 	}
 	
 	void Update () {
-        Debug.Log(rolling);
-        Debug.Log(rollingTime);
         rollingTime -= Time.deltaTime;
         if (rolling && rollingTime < 0)
         {
