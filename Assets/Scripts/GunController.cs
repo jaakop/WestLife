@@ -10,10 +10,12 @@ public class GunController : MonoBehaviour {
 	}
 	
 	void Update () {
-        Vector2 mousePos = Input.mousePosition;
-        float AngleRad = Mathf.Atan2(mousePos.y - position.transform.position.y, mousePos.x - position.transform.position.x);
+        Vector2 target = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        // Get Angle in Radians
+        float AngleRad = Mathf.Atan2(target.y - transform.position.y, target.x - transform.position.x);
+        // Get Angle in Degrees
         float AngleDeg = (180 / Mathf.PI) * AngleRad;
-        transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
-        transform.LookAt(new Vector3(mousePos.x, mousePos.y,0));
-	}
+        // Rotate Object
+        this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
+    }
 }
