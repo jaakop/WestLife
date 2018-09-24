@@ -33,7 +33,7 @@ public class GunController : MonoBehaviour {
         int mask = 1 << 8;
         //mask = ~mask;
         Debug.Log("SHOT");
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, Mathf.Infinity, mask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position), Mathf.Infinity, mask);
         if(hit.collider != null)
         {
             Debug.Log("HIT");
