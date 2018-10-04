@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GunController : MonoBehaviour {
-    GameObject player;
     public Transform position;
-	void Start () {
-        player = GameObject.FindGameObjectWithTag("Player");
+    [SerializeField]
+    GameObject bulletTrail;
+    GameObject gunPoint;
+    [SerializeField]
+    GameObject gunPoint1;
+    [SerializeField]
+    GameObject gunPoint2;
+    [SerializeField]
+    ParticleSystem particles;
+    void Start () {
 	}
 	
 	void Update () {
@@ -16,6 +23,7 @@ public class GunController : MonoBehaviour {
         {
             Shoot();
         }
+        gunPoint = gunPoint1;
     }
 
     void RotateGun()
@@ -27,16 +35,43 @@ public class GunController : MonoBehaviour {
         float AngleDeg = (180 / Mathf.PI) * AngleRad;
         // Rotate Object
         this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
+
+        if(target.x < transform.position.x)
+        {
+            FlipGun(true);
+        }
+        else
+        {
+            FlipGun(false);
+        }
     }
     void Shoot()
     {
-        int mask = 1 << 8;
+        int mask = 1 << 0;
         //mask = ~mask;
         Debug.Log("SHOT");
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, Mathf.Infinity, mask);
+        RaycastHit2D hit = Physics2D.Raycast(gunPoint.transform.position, Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position), Mathf.Infinity, mask);
+        Debug.DrawRay(gunPoint.transform.position, Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position), Color.green, 10);
         if(hit.collider != null)
         {
-            Debug.Log("HIT");
+            Debug.Log("HIT" + hit.collider.name);
+            ParticleSystem system = Instantiate(particles, hit.point, Quaternion.identity);
+            system.Play();
+        }
+        Instantiate(bulletTrail, gunPoint.transform.position, gunPoint.transform.rotation);
+    }
+    void FlipGun(bool flipped)
+    {
+        if (flipped)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipY = true;
+            gunPoint = gunPoint2;
+            
+        }
+        else
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipY = false;
+            gunPoint = gunPoint1;   
         }
     }
 }
