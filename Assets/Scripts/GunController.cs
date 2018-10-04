@@ -50,8 +50,12 @@ public class GunController : MonoBehaviour {
         int mask = 1 << 0;
         //mask = ~mask;
         Debug.Log("SHOT");
+<<<<<<< HEAD
         RaycastHit2D hit = Physics2D.Raycast(gunPoint.transform.position, Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position), Mathf.Infinity, mask);
         Debug.DrawRay(gunPoint.transform.position, Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position), Color.green, 10);
+=======
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position), Mathf.Infinity, mask);
+>>>>>>> 07ad355bced3da98a6a4dd974d2386bf70c57331
         if(hit.collider != null)
         {
             Debug.Log("HIT" + hit.collider.name);
