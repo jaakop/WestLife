@@ -13,7 +13,11 @@ public class GunController : MonoBehaviour {
     GameObject gunPoint2;
     [SerializeField]
     ParticleSystem particles;
+
+    private GameObject cam;
+
     void Start () {
+        cam = GameObject.FindGameObjectWithTag("MainCamera");
 	}
 	
 	void Update () {
@@ -45,20 +49,29 @@ public class GunController : MonoBehaviour {
             FlipGun(false);
         }
     }
+
     void Shoot()
     {
         int mask = 1 << 0;
+
         Debug.Log("SHOT");
+
         RaycastHit2D hit = Physics2D.Raycast(gunPoint.transform.position, Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position), Mathf.Infinity, mask);
         Debug.DrawRay(gunPoint.transform.position, Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position), Color.green, 10);
-        if(hit.collider != null)
+        GameObject trail = Instantiate(bulletTrail, gunPoint.transform.position, gunPoint.transform.rotation);
+        trail.GetComponent<BoxCollider2D>().enabled = false;
+        if (hit.collider != null)
         {
             Debug.Log("HIT" + hit.collider.name);
+            trail.GetComponent<BoxCollider2D>().enabled = true;
             ParticleSystem system = Instantiate(particles, hit.point, Quaternion.identity);
             system.Play();
         }
-        Instantiate(bulletTrail, gunPoint.transform.position, gunPoint.transform.rotation);
+
+        cam.GetComponent<CameraShake>().shakeDuration = 0.1f;
+        cam.GetComponent<CameraShake>().enabled = true;
     }
+
     void FlipGun(bool flipped)
     {
         if (flipped)
