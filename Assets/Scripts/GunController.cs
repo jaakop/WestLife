@@ -57,7 +57,6 @@ public class GunController : MonoBehaviour {
         Debug.Log("SHOT");
 
         RaycastHit2D hit = Physics2D.Raycast(gunPoint.transform.position, Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position), Mathf.Infinity, mask);
-        Debug.DrawRay(gunPoint.transform.position, Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position), Color.green, 10);
         GameObject trail = Instantiate(bulletTrail, gunPoint.transform.position, gunPoint.transform.rotation);
         trail.GetComponent<BoxCollider2D>().enabled = false;
         if (hit.collider != null)
