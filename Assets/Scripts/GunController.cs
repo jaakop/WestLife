@@ -13,11 +13,13 @@ public class GunController : MonoBehaviour {
     GameObject gunPoint2;
     [SerializeField]
     ParticleSystem particles;
+    private AudioSource audioSource;
 
     private GameObject cam;
 
     void Start () {
         cam = GameObject.FindGameObjectWithTag("MainCamera");
+        audioSource = GetComponent<AudioSource>();
 	}
 	
 	void Update () {
@@ -55,7 +57,7 @@ public class GunController : MonoBehaviour {
         int mask = 1 << 0;
 
         Debug.Log("SHOT");
-
+        audioSource.Play();
         RaycastHit2D hit = Physics2D.Raycast(gunPoint.transform.position, Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position), Mathf.Infinity, mask);
         GameObject trail = Instantiate(bulletTrail, gunPoint.transform.position, gunPoint.transform.rotation);
         trail.GetComponent<BoxCollider2D>().enabled = false;
