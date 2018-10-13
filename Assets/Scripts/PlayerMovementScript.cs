@@ -69,17 +69,17 @@ public class PlayerMovementScript : MonoBehaviour {
             Move(new Vector2(0, rb.velocity.y));
             direction = new Vector2(0, direction.y);
         }
-        if(Input.GetKey(KeyCode.Mouse1) && !rolling)
-        {
-            if (rb.velocity.x != 0 || rb.velocity.y != 0)
-            {
-                Debug.Log("Roll");
-                rolling = true;
-                Move(direction * rollSpeed);
-                rollingTime = .3f;
-                rollingStop = true;
-            }
-        }
+        //if(Input.GetKey(KeyCode.Mouse1) && !rolling)
+        //{
+        //    if (rb.velocity.x != 0 || rb.velocity.y != 0)
+        //    {
+        //        Debug.Log("Roll");
+        //        rolling = true;
+        //        Move(direction * rollSpeed);
+        //        rollingTime = .3f;
+        //        rollingStop = true;
+        //    }
+        //}
     }
 
     void Move(Vector2 direction)
