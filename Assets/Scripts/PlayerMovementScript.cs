@@ -20,14 +20,26 @@ public class PlayerMovementScript : MonoBehaviour {
     private Vector2 direction;
     private bool rolling;
     private float rollingTime;
-
+    public Animator playerAnim;
     private bool rollingStop;
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         direction = new Vector2(0, 0);
-	}
+        playerAnim = GetComponent<Animator>();
+    }
 	
-	void Update () {
+	void Update ()
+    {
+
+        if (Input.GetKey(right) || Input.GetKey(left) || Input.GetKey(up) || Input.GetKey(down))
+        {
+            playerAnim.SetBool("IsWalking", true);
+        }
+        else
+        {
+            playerAnim.SetBool("IsWalking", false);
+        }
+
         rollingTime -= Time.deltaTime;
         if (rolling && rollingTime < 0)
         {
@@ -69,6 +81,7 @@ public class PlayerMovementScript : MonoBehaviour {
             Move(new Vector2(0, rb.velocity.y));
             direction = new Vector2(0, direction.y);
         }
+
         //if(Input.GetKey(KeyCode.Mouse1) && !rolling)
         //{
         //    if (rb.velocity.x != 0 || rb.velocity.y != 0)

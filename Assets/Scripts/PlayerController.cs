@@ -6,12 +6,22 @@ public class PlayerController : MonoBehaviour {
 
     Animator playerAnim;
 
+    [SerializeField]
+    private GameObject mask;
 	void Start () {
 		playerAnim = GetComponent<Animator>();
 	}
 
 	void Update () {
         playerAnim.SetFloat("Direction", GetRotationToMouse());
+        if (GetRotationToMouse() > 45 && GetRotationToMouse() < 130)
+        {
+            mask.SetActive(true);
+        }
+        else
+        {
+            mask.SetActive(false);
+        }
 	}
 
     float GetRotationToMouse()
