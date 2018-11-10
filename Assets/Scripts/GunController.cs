@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class GunController : MonoBehaviour {
     public Transform position;
@@ -13,6 +14,8 @@ public class GunController : MonoBehaviour {
     GameObject gunPoint2;
     [SerializeField]
     ParticleSystem particles;
+    [SerializeField]
+    private Animator gunAnimator;
     private AudioSource audioSource;
 
     private GameObject cam;
@@ -20,6 +23,7 @@ public class GunController : MonoBehaviour {
     void Start () {
         cam = GameObject.FindGameObjectWithTag("MainCamera");
         audioSource = GetComponent<AudioSource>();
+        gunAnimator = GetComponent<Animator>();
 	}
 	
 	void Update () {
@@ -55,7 +59,7 @@ public class GunController : MonoBehaviour {
     void Shoot()
     {
         int mask = 1 << 0;
-
+        gunAnimator.SetTrigger("Shot");
         Debug.Log("SHOT");
         audioSource.Play();
         RaycastHit2D hit = Physics2D.Raycast(gunPoint.transform.position, Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position), Mathf.Infinity, mask);

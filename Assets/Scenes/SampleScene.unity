@@ -245,6 +245,7 @@ GameObject:
   - component: {fileID: 70364878}
   - component: {fileID: 70364880}
   - component: {fileID: 70364879}
+  - component: {fileID: 70364882}
   - component: {fileID: 70364881}
   m_Layer: 8
   m_Name: Gun
@@ -260,7 +261,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 70364877}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0033, y: -0.0565, z: 0}
+  m_LocalPosition: {x: 0.018, y: -0.08, z: 0}
   m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_Children:
   - {fileID: 580532966}
@@ -286,6 +287,7 @@ MonoBehaviour:
   gunPoint2: {fileID: 356322407}
   particles: {fileID: 198844345031731036, guid: 8f4be50bbbfdc78499c79a0cd521595c,
     type: 2}
+  gunAnimator: {fileID: 0}
 --- !u!212 &70364880
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -343,13 +345,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9f3a548e6f308f548b4e66abf079437d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.298
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 256
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -427,6 +429,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &70364882
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 70364877}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9c5830b81101e264f8cfeb132d2b2a0f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &218200734
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,7 +591,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 356322407}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.119000025, y: -0.028, z: 0}
+  m_LocalPosition: {x: 0.1, y: -0.07, z: 0}
   m_LocalScale: {x: 0.1, y: 0, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 70364878}
@@ -704,7 +724,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 580532965}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.119, y: 0.032, z: 0}
+  m_LocalPosition: {x: 0.1, y: 0.06, z: 0}
   m_LocalScale: {x: 0.1, y: 0, z: 0.1}
   m_Children: []
   m_Father: {fileID: 70364878}

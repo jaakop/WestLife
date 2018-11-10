@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Update () {
         playerAnim.SetFloat("Direction", GetRotationToMouse());
-        if (GetRotationToMouse() > 45 && GetRotationToMouse() < 130)
+        if (GetRotationToMouse() > 45 && GetRotationToMouse() < 150)
         {
             mask.SetActive(true);
         }
