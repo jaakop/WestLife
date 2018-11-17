@@ -44,9 +44,12 @@ public class GunController : MonoBehaviour {
         // Get Angle in Degrees
         float AngleDeg = (180 / Mathf.PI) * AngleRad;
         // Rotate Object
-        this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
-
         if(target.x < transform.position.x)
+            this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg/* + 5 + Vector2.Distance(target, transform.position) * 0.05f*/);
+        
+        else
+            this.transform.rotation = Quaternion.Euler(0, 0, AngleDeg);
+        if (target.x < transform.position.x)
         {
             FlipGun(true);
         }
