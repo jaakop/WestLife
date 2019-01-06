@@ -34,6 +34,8 @@ public class GunController : MonoBehaviour {
             Shoot();
         }
         gunPoint = gunPoint1;
+        
+        Debug.DrawRay(gunPoint.transform.position, Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position), Color.green);
     }
 
     void RotateGun()
@@ -62,7 +64,10 @@ public class GunController : MonoBehaviour {
         gunAnimator.SetTrigger("Shot");
         Debug.Log("SHOT");
         audioSource.Play();
+
         RaycastHit2D hit = Physics2D.Raycast(gunPoint.transform.position, Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position), Mathf.Infinity, mask);
+
+
         GameObject trail = Instantiate(bulletTrail, gunPoint.transform.position, gunPoint.transform.rotation);
         trail.GetComponent<BoxCollider2D>().enabled = false;
         if (hit.collider != null)
